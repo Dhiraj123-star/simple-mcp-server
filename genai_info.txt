@@ -1,0 +1,30 @@
+# GenAI Quick Reference
+
+## What is Generative AI?
+Generative AI refers to AI models that can generate new content — text, images, code, audio — based on patterns learned from training data.
+
+## Popular Large Language Models (LLMs)
+- GPT-4       : OpenAI's flagship model, used in ChatGPT
+- Claude      : Anthropic's model, focused on safety and helpfulness
+- Gemini      : Google DeepMind's multimodal model
+- LLaMA       : Meta's open-source LLM family
+- Mistral     : Lightweight open-source LLM from Mistral AI
+
+## Key Concepts
+- Prompt      : The input text you give to an LLM
+- Token       : A chunk of text (roughly 4 characters) that LLMs process
+- Context Window : Max tokens the model can read at once
+- Temperature : Controls randomness of output (0 = deterministic, 1 = creative)
+- RAG         : Retrieval Augmented Generation — combining LLMs with external knowledge
+
+## Common Use Cases
+- Code generation and review
+- Document summarization
+- Question answering
+- Chatbots and virtual assistants
+- Content creation
+
+## Frameworks
+- LangChain   : Popular framework for building LLM applications
+- LlamaIndex  : Framework focused on data ingestion and RAG
+- FastMCP     : Framework for building MCP servers in Python
