@@ -14,6 +14,7 @@ async def main():
 
             await session.initialize()
 
+            # ----- List Tools --------
             tools = await session.list_tools()
             print("\nTOOLS:")
             for t in tools.tools:
@@ -30,6 +31,18 @@ async def main():
             print("\nCALLING greet_user('Dhiraj'):")
             result = await session.call_tool("greet_user", {"name": "Dhiraj"})
             print(f"  Result: {result.content[0].text}")
+
+            # ----- List resources -------
+
+            resources = await session.list_resources()
+            print("\nRESOURCES")
+            for r in resources.resources:
+                print(f" - {r.url}: {r.description}")
+
+            # ----- Read resources ------
+            print("\nReading resource: file://genai_info")
+            content = await session.read_resource("file://genai_info")
+            print(content.contents[0].text)
 
 
 if __name__ == "__main__":
