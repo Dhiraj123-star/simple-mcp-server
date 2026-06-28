@@ -1,11 +1,11 @@
 # Simple MCP Server & Client
 
-A minimal, fully functional Model Context Protocol (MCP) server and client implementation using Python. This repository demonstrates how to expose tools and resources using the FastMCP framework and interact with them via an MCP client.
+A minimal, fully functional Model Context Protocol (MCP) server and client implementation using Python. This repository demonstrates how to expose tools, resources, and prompts using the FastMCP framework and interact with them via an MCP client.
 
 ## Repository Structure
 
-- [server.py](file:///home/dhiraj-kumar/Desktop/Projects/simple_mcp_server/server.py): Defines the FastMCP server, registering tools and resources.
-- [client.py](file:///home/dhiraj-kumar/Desktop/Projects/simple_mcp_server/client.py): An asynchronous stdio-based client that connects to the server, queries its tools/resources, executes tools, and reads resources.
+- [server.py](file:///home/dhiraj-kumar/Desktop/Projects/simple_mcp_server/server.py): Defines the FastMCP server, registering tools, resources, and prompts.
+- [client.py](file:///home/dhiraj-kumar/Desktop/Projects/simple_mcp_server/client.py): An asynchronous stdio-based client that connects to the server, queries its tools/resources/prompts, executes tools, reads resources, and retrieves prompts.
 - [tools.py](file:///home/dhiraj-kumar/Desktop/Projects/simple_mcp_server/tools.py): Contains the core math and greeting helper functions used by the server tools.
 - [genai_info.txt](file:///home/dhiraj-kumar/Desktop/Projects/simple_mcp_server/genai_info.txt): A sample reference file exposed as an MCP resource.
 - [requirements.txt](file:///home/dhiraj-kumar/Desktop/Projects/simple_mcp_server/requirements.txt): Lists the Python dependencies required for this project.
@@ -19,12 +19,16 @@ A minimal, fully functional Model Context Protocol (MCP) server and client imple
   - `greet_user(name: str) -> str`: Greets a user by name.
 - **Resources**:
   - `file://genai_info`: Exposes the contents of [genai_info.txt](file:///home/dhiraj-kumar/Desktop/Projects/simple_mcp_server/genai_info.txt) to provide quick reference information about Generative AI.
+- **Prompts**:
+  - `explain_concept(concept: str) -> str`: Generates a prompt template to explain a GenAI concept in simple terms.
+  - `compare_models(model_a: str, model_b: str) -> str`: Generates a prompt template to compare two AI models.
 
 ### MCP Client (`client.py`)
 - Runs a stdio-based client connecting to the server process (`python server.py`).
-- Interrogates and lists all available tools and resources.
+- Interrogates and lists all available tools, resources, and prompts.
 - Dynamically invokes all tools with sample parameters.
 - Reads and prints the contents of the `file://genai_info` resource.
+- Retrieves and renders prompts for user review (e.g. `explain_concept` and `compare_models`).
 
 ## Setup
 
@@ -42,7 +46,7 @@ A minimal, fully functional Model Context Protocol (MCP) server and client imple
 ## Usage
 
 ### Run the Client
-To start the client (which spawns the server, connects via stdio, lists and calls tools, and reads resources):
+To start the client (which spawns the server, connects via stdio, lists/calls tools, reads resources, and fetches prompts):
 ```bash
 python client.py
 ```
@@ -52,7 +56,7 @@ Since `mcp[cli]` is installed, you can use the MCP developer tool to run and deb
 ```bash
 mcp dev server.py
 ```
-This starts a development server with an inspector interface, allowing you to manually call tools and inspect resource state.
+This starts a development server with an inspector interface, allowing you to manually call tools, inspect resources, and view/render prompts.
 
 ### Run the Server directly
 ```bash
