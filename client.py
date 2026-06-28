@@ -32,17 +32,31 @@ async def main():
             result = await session.call_tool("greet_user", {"name": "Dhiraj"})
             print(f"  Result: {result.content[0].text}")
 
-            # ----- List resources -------
-
+            # ----- List Resources --------
             resources = await session.list_resources()
-            print("\nRESOURCES")
+            print("\nRESOURCES:")
             for r in resources.resources:
-                print(f" - {r.url}: {r.description}")
+                print(f"  - {r.uri}: {r.description}")
 
-            # ----- Read resources ------
-            print("\nReading resource: file://genai_info")
+            # ----- Read Resource --------
+            print("\nREADING resource: file://genai_info")
             content = await session.read_resource("file://genai_info")
             print(content.contents[0].text)
+
+            # ----- List Prompts --------
+            prompts = await session.list_prompts()
+            print("\nPROMPTS:")
+            for p in prompts.prompts:
+                print(f"  - {p.name}: {p.description}")
+
+            # ----- Get Prompt --------
+            print("\nGETTING prompt: explain_concept(concept='RAG')")
+            prompt = await session.get_prompt("explain_concept", {"concept": "RAG"})
+            print(f"  Prompt: {prompt.messages[0].content.text}")
+
+            print("\nGETTING prompt: compare_models(model_a='GPT-4', model_b='Claude')")
+            prompt = await session.get_prompt("compare_models", {"model_a": "GPT-4", "model_b": "Claude"})
+            print(f"  Prompt: {prompt.messages[0].content.text}")
 
 
 if __name__ == "__main__":
