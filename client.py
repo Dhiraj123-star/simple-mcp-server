@@ -32,6 +32,19 @@ async def main():
             result = await session.call_tool("greet_user", {"name": "Dhiraj"})
             print(f"  Result: {result.content[0].text}")
 
+            # ----- Database Tools --------
+            print("\nCALLING list_users():")
+            result = await session.call_tool("list_users", {})
+            print(f"{result.content[0].text}")
+
+            print("\nCALLING find_user('Alice'):")
+            result = await session.call_tool("find_user", {"name": "Alice"})
+            print(f"  Result: {result.content[0].text}")
+
+            print("\nCALLING find_user('Unknown'):")
+            result = await session.call_tool("find_user", {"name": "Unknown"})
+            print(f"  Result: {result.content[0].text}")
+
             # ----- List Resources --------
             resources = await session.list_resources()
             print("\nRESOURCES:")
