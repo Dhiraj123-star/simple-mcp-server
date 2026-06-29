@@ -1,9 +1,12 @@
 from mcp.server.fastmcp import FastMCP
-from mcp.types import PromptMessage, TextContent
 from tools import add, greet, multiply
+from database import init_db, get_all_users, get_user_by_name
 from pathlib import Path
 
 mcp = FastMCP("learning-mcp")
+
+# Initialize DB on server startup
+init_db()
 
 
 # --- TOOLS ---
@@ -24,6 +27,26 @@ def greet_user(name: str) -> str:
 def multiply_numbers(a: int, b: int) -> int:
     """Multiply two numbers."""
     return multiply(a, b)
+
+
+@mcp.tool()
+def list_users() -> str:
+    """List all users from the database."""
+    rows = get_all_users()
+    result = "\n".join(
+        f"ID: {r[0]} | Name: {r[1]} | Role: {r[2]} | Skills: {r[3]}"
+        for r in rows
+    )
+    return result
+
+
+@mcp.tool()
+def find_user(name: str) -> str:
+    """Find a user by name from the database."""
+    row = get_user_by_name(name)
+    if row:
+        return f"ID: {row[0]} | Name: {row[1]} | Role: {row[2]} | Skills: {row[3]}"
+    return f"User '{name}' not found."
 
 
 # --- RESOURCES ---
