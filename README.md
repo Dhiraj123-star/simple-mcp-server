@@ -6,6 +6,7 @@ A minimal, fully functional Model Context Protocol (MCP) server and client imple
 
 - [server.py](file:///home/dhiraj-kumar/Desktop/Projects/simple_mcp_server/server.py): Defines the FastMCP server, registering tools, resources, and prompts.
 - [client.py](file:///home/dhiraj-kumar/Desktop/Projects/simple_mcp_server/client.py): An asynchronous stdio-based client that connects to the server, queries its tools/resources/prompts, executes tools, reads resources, and retrieves prompts.
+- [database.py](file:///home/dhiraj-kumar/Desktop/Projects/simple_mcp_server/database.py): Manages SQLite database connection, schema initialization, and querying user records.
 - [tools.py](file:///home/dhiraj-kumar/Desktop/Projects/simple_mcp_server/tools.py): Contains the core math and greeting helper functions used by the server tools.
 - [genai_info.txt](file:///home/dhiraj-kumar/Desktop/Projects/simple_mcp_server/genai_info.txt): A sample reference file exposed as an MCP resource.
 - [requirements.txt](file:///home/dhiraj-kumar/Desktop/Projects/simple_mcp_server/requirements.txt): Lists the Python dependencies required for this project.
@@ -17,6 +18,8 @@ A minimal, fully functional Model Context Protocol (MCP) server and client imple
   - `add_numbers(a: int, b: int) -> int`: Adds two integers.
   - `multiply_numbers(a: int, b: int) -> int`: Multiplies two integers.
   - `greet_user(name: str) -> str`: Greets a user by name.
+  - `list_users() -> str`: Lists all users from the SQLite database.
+  - `find_user(name: str) -> str`: Finds a user by name from the SQLite database.
 - **Resources**:
   - `file://genai_info`: Exposes the contents of [genai_info.txt](file:///home/dhiraj-kumar/Desktop/Projects/simple_mcp_server/genai_info.txt) to provide quick reference information about Generative AI.
 - **Prompts**:
