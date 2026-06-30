@@ -10,6 +10,8 @@ A minimal, fully functional Model Context Protocol (MCP) server and client imple
 - [tools.py](file:///home/dhiraj-kumar/Desktop/Projects/simple_mcp_server/tools.py): Contains the core math and greeting helper functions used by the server tools.
 - [genai_info.txt](file:///home/dhiraj-kumar/Desktop/Projects/simple_mcp_server/genai_info.txt): A sample reference file exposed as an MCP resource.
 - [requirements.txt](file:///home/dhiraj-kumar/Desktop/Projects/simple_mcp_server/requirements.txt): Lists the Python dependencies required for this project.
+- [Dockerfile](file:///home/dhiraj-kumar/Desktop/Projects/simple_mcp_server/Dockerfile): Configures the container to build and run the MCP server.
+- [.dockerignore](file:///home/dhiraj-kumar/Desktop/Projects/simple_mcp_server/.dockerignore): Excludes virtual environments, Python caches, and temporary files from the Docker build context.
 
 ## Features
 
@@ -65,3 +67,17 @@ This starts a development server with an inspector interface, allowing you to ma
 ```bash
 python server.py
 ```
+
+## Running with Docker
+
+You can also run the MCP server inside a Docker container.
+
+1. **Build the Docker Image**:
+   ```bash
+   docker build -t simple-mcp-server .
+   ```
+
+2. **Run the Container**:
+   ```bash
+   docker run -it simple-mcp-server
+   ```
